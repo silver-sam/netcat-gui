@@ -191,8 +191,9 @@ class NetcatGUI:
         
     def add_chat_message(self, sender, message, show=True):
         """Add a message bubble to the chat"""
+        print(f"[{sender}] {message}")  # Added for debugging
         if not show:
-            return 
+            return
         
         if not hasattr(self, 'chat_frame') or not self.chat_frame:
             return

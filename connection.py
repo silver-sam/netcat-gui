@@ -24,9 +24,12 @@ class NetcatConnection:
                 self.connection_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                 self.connection_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
+                # Use interactive mode for client to prevent idle timeout
                 cmd_args = ["gs-netcat", "-s", password]
                 if mode == "server":
                     cmd_args.insert(1, "-l")
+                else:
+                    cmd_args.append("-i")
 
                 self.process = subprocess.Popen(
                     cmd_args,
